@@ -4,11 +4,9 @@ import Search from "../../components/Search/Search.js";
 class Articles extends Component {
   state = {
     Articles: [],
-   
   };
 
   componentDidMount() {
-
   }
 
 

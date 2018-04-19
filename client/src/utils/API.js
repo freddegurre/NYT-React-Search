@@ -18,6 +18,10 @@ export default {
     console.log(queryURL)
     return axios.get(`${queryURL}`);
   },
+  
+  saveArticle: function(articleData) {
+    return axios.post("/api/articles", articleData);
+  }
 
 };
 

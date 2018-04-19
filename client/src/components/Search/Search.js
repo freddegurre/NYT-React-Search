@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Input, FormBtn } from "./Form";
+import {Results} from "./Results";
+import SaveBtn from "./SaveBtn";
 
 class Search extends Component {
   state = {
@@ -16,18 +18,14 @@ class Search extends Component {
   }
 
   handleInputChange = event => {
-    // Getting the value and name of the input which triggered the change
-    // Updating the input's state
     this.setState({
       [event.target.name]: event.target.value
     });
   };
   
   newSearch = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     API.getArticles(this.state.topic, this.state.startYear, this.state.endYear).then(res =>{
-      console.log(res.data.response.docs)
       this.setState({ Articles: res.data.response.docs})
       this.setState({
         topic: "", 
@@ -36,6 +34,19 @@ class Search extends Component {
       })
       }).catch(err => console.log(err));
   };
+
+  saveArticle = (article) => {
+    //API.saveArticle(article).then(res =>{
+      console.log(article)
+    //})
+    API.saveArticle({
+      title: article.headline.main,
+      article: article.snippet,
+      link: article.web_url,
+      date: article.pub_date
+  })
+    
+  }
 
   render() {
     return (
@@ -63,14 +74,21 @@ class Search extends Component {
       Search 
       </FormBtn>
       </form>
-              <ul>
-              {this.state.Articles.map(Article => {
-                  return(
-                    <li>{Article.headline.main}</li>
-                  )
+        <div className="results-wrapper">
+            {this.state.Articles.map(Article => {
+                return(
+                <div>
+                <Results title={Article.headline.main}
+                 article={Article.snippet}
+                 link={Article.web_url}
+                 date={Article.pub_date}
+                 />
+                <SaveBtn onClick={()=> this.saveArticle(Article)} />
+                </div>
+                    )
                 })
-              } 
-              </ul>
+            } 
+        </div>
     </div>
     )
   }
