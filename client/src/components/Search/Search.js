@@ -36,15 +36,17 @@ class Search extends Component {
   };
 
   saveArticle = (article) => {
-    //API.saveArticle(article).then(res =>{
-      console.log(article)
-    //})
+    console.log("before api.save")
     API.saveArticle({
       title: article.headline.main,
       article: article.snippet,
       link: article.web_url,
       date: article.pub_date
-  })
+  }).then(res => {
+   console.log("hello")
+  }
+        
+      )
     
   }
 
@@ -62,13 +64,13 @@ class Search extends Component {
         value={this.state.startYear}
         onChange={this.handleInputChange}
         name="startYear"
-        placeholder="startYear (required)"
+        placeholder="startYear"
       />
        <Input
         value={this.state.endYear}
         onChange={this.handleInputChange}
         name="endYear"
-        placeholder="endYear (required)"
+        placeholder="endYear"
       />
       <FormBtn onClick={this.newSearch}>
       Search 
@@ -77,7 +79,7 @@ class Search extends Component {
         <div className="results-wrapper">
             {this.state.Articles.map(Article => {
                 return(
-                <div>
+                <div className="articleBloc">
                 <Results title={Article.headline.main}
                  article={Article.snippet}
                  link={Article.web_url}

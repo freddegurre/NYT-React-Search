@@ -20,7 +20,12 @@ export default {
   },
   
   saveArticle: function(articleData) {
+    console.log(articleData.title)
     return axios.post("/api/articles", articleData);
+  },
+
+  getSavedArticles: function() {
+    return axios.get("/api/articles")
   }
 
 };
