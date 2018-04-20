@@ -9,6 +9,7 @@ class Articles extends Component {
   };
 
   componentDidMount() {
+    this.getSavedArticles(); 
   }
 
   getSavedArticles = () => {
@@ -27,7 +28,7 @@ class Articles extends Component {
     <Search />
     {this.state.Articles.map(Article => {
                 return(
-                <div className="articleBloc">
+                <div className="articleBlocSaved">
                 <SavedArticles title={Article.title}
                  article={Article.article}
                  link={Article.link}

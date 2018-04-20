@@ -13,9 +13,6 @@ class Search extends Component {
    
   };
 
-  componentDidMount() {
-
-  }
 
   handleInputChange = event => {
     this.setState({
@@ -44,11 +41,8 @@ class Search extends Component {
       date: article.pub_date
   }).then(res => {
    console.log("hello")
-  }
-        
-      )
-    
-  }
+  })
+}
 
   render() {
     return (

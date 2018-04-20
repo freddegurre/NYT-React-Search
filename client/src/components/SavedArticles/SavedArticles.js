@@ -5,5 +5,6 @@ export const SavedArticles = props => (
     <h4> {props.title} </h4>
     <p> {props.article}</p>
     <span> {props.date} </span> <span> <a href={props.link}>link to article</a></span>
+    <p> Saved Article </p>
    </div>
 );

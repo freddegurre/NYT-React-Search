@@ -3,10 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 var bodyParser = require("body-parser");
 const app = express();
-const routes = require("./routes/api-routes.js");
 var mongoose = require("mongoose");
-
-
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -32,7 +29,6 @@ app.post("/api/articles", function(req, res){
 
 app.get("/api/articles", function(req, res){
   db.Article.find().then(function(response){
-    console.log(response)
     res.json(response);
   })
 })
